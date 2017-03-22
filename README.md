@@ -13,11 +13,11 @@ source bin/activate
 ```
 * clone the code from github
 ```shell
-git clone https://github.com/tsadimas/InfSystTechLab2017.git
+git clone https://github.com/dithua/WIS-2017.git
 ```
 * go to app folder and install the dependencies
 ```shell
-cd getposts
+cd WIS-2017
 pip install -r requirements.txt
 ```
 
