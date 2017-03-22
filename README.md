@@ -1,4 +1,4 @@
-# InfSystTechLab2017
+# Web Information Systems Lab (2017)
 
 How to clone the project
 
