@@ -20,3 +20,6 @@ git clone https://github.com/tsadimas/InfSystTechLab2017.git
 cd getposts
 pip install -r requirements.txt
 ```
+
+
+More info [Lab1](https://docs.google.com/document/d/1HdpPkUIiysOgwu82ym11vZZfegPlOC6suyPGcO39_tQ/pub)
