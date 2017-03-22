@@ -4,7 +4,7 @@ How to clone the project
 
 * create a virtual environment
 ```shell
-virtualenv postsapp
+virtualenv -p python3 postsapp
 ```
 * go inside the virtualenv and activate it
 ```shell
