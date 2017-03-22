@@ -22,4 +22,4 @@ pip install -r requirements.txt
 ```
 
 
-More info [Lab1](https://docs.google.com/document/d/1HdpPkUIiysOgwu82ym11vZZfegPlOC6suyPGcO39_tQ/pub)
+More info [Lab1](https://docs.google.com/document/d/1HdpPkUIiysOgwu82ym11vZZfegPlOC6suyPGcO39_tQ/pub) [Lab2](https://docs.google.com/document/d/1PFWqw4v3NjBFtHVV5rTjZ-qPbiSH_cQc25KV3UEP5XA/pub)
