@@ -5,7 +5,7 @@ from django.contrib.auth.models import User
 
 
 class Posts(models.Model):
-	userId = models.ForeignKey(User, unique=True)
+	userId = models.ForeignKey(User)
 	id = models.AutoField(primary_key=True)
 	title = models.CharField(max_length=100)
 	body = models.TextField(max_length=512)

@@ -32,6 +32,7 @@ ALLOWED_HOSTS = []
 
 INSTALLED_APPS = [
     'django.contrib.admin',
+    'registration',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
@@ -77,10 +78,10 @@ WSGI_APPLICATION = 'getposts.wsgi.application'
 DATABASES = {
 	'default': {
     	'ENGINE': 'django.db.backends.mysql',
-    	'NAME': 'XXX',
-    	'USER': 'XXX',
-    	'PASSWORD': 'XXX',
-    	'HOST': 'XXXX',
+    	'NAME': 'itpuser',
+    	'USER': 'itpuser',
+    	'PASSWORD': '1tpus3r',
+    	'HOST': '83.212.105.20',
     	'PORT': '3306',
     	'CONN_MAX_AGE' : 600,
 	}
@@ -124,3 +125,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.10/howto/static-files/
 
 STATIC_URL = '/static/'
+
+#Registration settings
+ACCOUNT_ACTIVATION_DAYS = 7
+REGISTRATION_AUTO_LOGIN = True
