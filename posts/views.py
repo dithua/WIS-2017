@@ -8,7 +8,8 @@ from .forms import PostsForm
 
 # Create your views here.
 def index(request):
-     data = json.load(urlopen('http://jsonplaceholder.typicode.com/posts'))
+     web_data = urlopen('http://jsonplaceholder.typicode.com/posts').read().decode('utf-8')
+     data = json.loads(web_data)
      context = {'posts' : data}
      return render(request, 'allposts.html', context)
 
