@@ -23,7 +23,7 @@
     </table>
     <h2>Add New Comment</h2>
     {% if model_view and user.is_authenticated %}
-        <form action='{% url 'post_comment' %}' method='post'>{% csrf_token %}
+        <form action='{% url 'post_comment' post.id %}' method='post'>{% csrf_token %}
             {{ form.as_p }}
             <input type='submit' value='Comment' />
         </form>
