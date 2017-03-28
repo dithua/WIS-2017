@@ -3,6 +3,7 @@ from django.core.urlresolvers import reverse
 from django.http import HttpResponseRedirect
 import json
 from urllib.request import urlopen
+from suds.client import Client
 from .models import Posts, Comments
 from .forms import PostsForm, CommentsForm
 
@@ -54,16 +55,19 @@ def post_form(request):
 
 
 def comment_form(request, post_id):
-    print("HERE 2")
     if request.method == 'POST':
-        print("HERE 3")
         form = CommentsForm(request.POST)
         if form.is_valid():
-            print("HERE 3")
             name = form.cleaned_data['name']
             body = form.cleaned_data['body']
+            qualified_body = qualify_comment_body(body)
             email = form.cleaned_data['email']
             post = Posts.objects.get(pk=post_id)
-            comment = Comments.objects.create(name=name, body=body, email=email, postId=post)
+            comment = Comments.objects.create(name=name, body=qualified_body, email=email, postId=post)
 
     return HttpResponseRedirect(reverse('model_post_comments', args=[post_id]))
+
+def qualify_comment_body(body_content):
+    client = Client('http://10.100.55.217:8080/approvecomment/services/ApproveCommentImpl?wsdl')
+    qualified_content = client.service.sayHello(body_content)
+    return qualified_content
