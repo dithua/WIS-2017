@@ -32,6 +32,11 @@
                 <li><a href="{% url 'index' %}">Home</a></li>
                 <li><a href="{% url 'api_posts' %}">API Posts</a></li>
                 <li><a href="{% url 'model_posts' %}">Model Posts</a></li>
+                {% if user.is_authenticated %}
+                    <li><a href="{% url 'auth_logout' %}">Logout</a></li>
+                {% else %}
+                    <li><a href="{% url 'auth_login' %}">Login</a></li>
+                {% endif %}
           </ul>
         </div>
       </div>

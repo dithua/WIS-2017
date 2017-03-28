@@ -4,7 +4,7 @@ from django.http import HttpResponseRedirect
 import json
 from urllib.request import urlopen
 from .models import Posts, Comments
-from .forms import PostsForm
+from .forms import PostsForm, CommentsForm
 
 
 def get_posts_from_API(request):
@@ -16,14 +16,15 @@ def get_posts_from_API(request):
 
 def get_posts_from_model(request):
     data = Posts.objects.all()
-    context = {'posts': data, 'url_redirect': 'model_post_comments'}
+    context = {'posts': data, 'url_redirect': 'model_post_comments',}
     return render(request, 'allposts.html', context)
 
 
 def get_comments_from_model(request, post_id):
     post = Posts.objects.get(pk=post_id)
     comments = Comments.objects.filter(postId=post_id)
-    context = {'comments': comments, 'post': post}
+    form = CommentsForm()
+    context = {'comments': comments, 'post': post, 'form': form, 'model_view': True}
     return render(request, 'post_comments.html', context)
 
 
