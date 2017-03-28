@@ -29,8 +29,9 @@
         </div>
         <div class="navbar-collapse collapse">
           <ul class="nav navbar-nav navbar-right">
-                <li><a href="/">Home</a></li>
-                <li><a href="/posts">All Posts</a></li>
+                <li><a href="{% url 'index' %}">Home</a></li>
+                <li><a href="{% url 'api_posts' %}">API Posts</a></li>
+                <li><a href="{% url 'model_posts' %}">Model Posts</a></li>
           </ul>
         </div>
       </div>

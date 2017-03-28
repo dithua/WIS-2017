@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% block body_block %}
+    <h1>{{ post.title }}</h1>
+    <p>{{ post.body }}</p>
+    <h2>Comments</h2>
+    <table class="table">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Body</th>
+          </tr>
+        </thead>
+        <tbody>
+        {% for comment in comments %}
+            <tr>
+                <td>{{ comment.name }}</td>
+                <td>{{ comment.email }}</td>
+                <td>{{ comment.body }}</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}
