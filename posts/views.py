@@ -54,12 +54,9 @@ def post_form(request):
 
 
 def comment_form(request, post_id):
-    print("HERE 2")
     if request.method == 'POST':
-        print("HERE 3")
         form = CommentsForm(request.POST)
         if form.is_valid():
-            print("HERE 3")
             name = form.cleaned_data['name']
             body = form.cleaned_data['body']
             email = form.cleaned_data['email']
