@@ -76,15 +76,10 @@ WSGI_APPLICATION = 'getposts.wsgi.application'
 # https://docs.djangoproject.com/en/1.10/ref/settings/#databases
 
 DATABASES = {
-	'default': {
-    	'ENGINE': 'django.db.backends.mysql',
-    	'NAME': 'itpuser',
-    	'USER': 'itpuser',
-    	'PASSWORD': '1tpus3r',
-    	'HOST': '83.212.105.20',
-    	'PORT': '3306',
-    	'CONN_MAX_AGE' : 600,
-	}
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': 'db',
+    }
 }
 
 
