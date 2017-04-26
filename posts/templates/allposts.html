@@ -1,8 +1,13 @@
 {% extends 'base.html' %}
 {% block body_block %}
-<ul id="results">
-    {% for post in posts %}
-     <li class="list-group-item"> <a href = "{% url url_redirect post.id %}">{{ post.title}} </a> </li>
-    {% endfor %}
-</ul>
+
+    {% if url_redirect == "model_post_comments"  %}
+        <a href="{% url 'post_new' %}">New Post</a>
+    {% endif %}
+
+    <ul id="results">
+        {% for post in posts %}
+         <li class="list-group-item"> <a href = "{% url url_redirect post.id %}">{{ post.title}} </a> </li>
+        {% endfor %}
+    </ul>
 {% endblock %}

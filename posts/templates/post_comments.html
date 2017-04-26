@@ -22,6 +22,9 @@
         </tbody>
     </table>
     <h2>Add New Comment</h2>
+    {% for message in messages %}
+        <div class="alert alert-{{ message.tags }}"> {{ message }}</div>
+    {% endfor %}
     {% if model_view and user.is_authenticated %}
         <form action='{% url 'post_comment' post.id %}' method='post'>{% csrf_token %}
             {{ form.as_p }}
