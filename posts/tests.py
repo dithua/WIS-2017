@@ -2,7 +2,7 @@ from django.test import TestCase
 from django.db import IntegrityError
 from django.contrib.auth.models import User
 from . models import Posts
-
+from . forms import PostsForm
 # -------- Model tests --------------
 
 class PostsModelTest(TestCase):
@@ -23,3 +23,36 @@ class PostsModelTest(TestCase):
 
     def test_save_post_with_user(self):
         self.assertTrue(self.post.save )
+
+
+# ---------  Form Tests ----------------
+
+class PostsFormTest(TestCase):
+
+    def test_form_without_data(self):
+        form = PostsForm({
+            'title': "",
+            'body': "",
+        })
+        self.assertFalse(form.is_valid())
+
+    def test_form_without_title(self):
+        form = PostsForm({
+            'title': "",
+            'body': "My post body",
+        })
+        self.assertFalse(form.is_valid())
+
+    def test_form_without_body(self):
+        form = PostsForm({
+            'title': "My post title",
+            'body': "",
+        })
+        self.assertFalse(form.is_valid())
+
+    def test_form_with_data_and_body(self):
+        form = PostsForm({
+            'title': "My post title",
+            'body': "My post body",
+        })
+        self.assertTrue(form.is_valid())
