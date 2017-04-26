@@ -1,4 +1,4 @@
-from django.test import TestCase
+from django.test import TestCase, Client
 from django.db import IntegrityError
 from django.contrib.auth.models import User
 from . models import Posts
@@ -56,3 +56,12 @@ class PostsFormTest(TestCase):
             'body': "My post body",
         })
         self.assertTrue(form.is_valid())
+
+
+# -------------- View Tests ----------------
+
+class PostsViewTest(TestCase):
+
+    def test_view_url_exists_at_desired_location(self):
+        resp = self.client.get('/posts/model/')
+        self.assertEqual(resp.status_code, 200)
