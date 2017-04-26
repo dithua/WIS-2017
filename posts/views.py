@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from django.core.urlresolvers import reverse
 from django.http import HttpResponseRedirect
+from django.conf import settings
 import json
 from urllib.request import urlopen
 from suds.client import Client
@@ -58,16 +59,17 @@ def comment_form(request, post_id):
     if request.method == 'POST':
         form = CommentsForm(request.POST)
         if form.is_valid():
-            name = form.cleaned_data['name']
             body = form.cleaned_data['body']
             qualified_body = qualify_comment_body(body)
-            email = form.cleaned_data['email']
             post = Posts.objects.get(pk=post_id)
-            comment = Comments.objects.create(name=name, body=qualified_body, email=email, postId=post)
+            comment = Comments.objects.create(name=request.user, body=qualified_body, email=request.user.email, postId=post)
 
     return HttpResponseRedirect(reverse('model_post_comments', args=[post_id]))
 
 def qualify_comment_body(body_content):
-    client = Client('http://10.100.55.217:8080/approvecomment/services/ApproveCommentImpl?wsdl')
-    qualified_content = client.service.sayHello(body_content)
-    return qualified_content
+    if settings.SOAP_WS_WORKING:
+        client = Client('http://10.100.55.217:8080/approvecomment/services/ApproveCommentImpl?wsdl')
+        qualified_content = client.service.sayHello(body_content)
+        return qualified_content
+    else:
+        return body_content
