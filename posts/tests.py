@@ -1,6 +1,7 @@
 from django.test import TestCase, Client
 from django.db import IntegrityError
 from django.contrib.auth.models import User
+from django.core.urlresolvers import reverse
 from . models import Posts
 from . forms import PostsForm
 # -------- Model tests --------------
@@ -65,3 +66,28 @@ class PostsViewTest(TestCase):
     def test_view_url_exists_at_desired_location(self):
         resp = self.client.get('/posts/model/')
         self.assertEqual(resp.status_code, 200)
+
+    def test_view_url_accessible_by_name(self):
+        resp = self.client.get(reverse('api_posts'))
+        self.assertEqual(resp.status_code, 200)
+
+    def test_view_index_uses_correct_template(self):
+        resp = self.client.get(reverse('index'))
+        self.assertEqual(resp.status_code, 200)
+        self.assertTemplateUsed(resp, 'index.html')
+
+    def test_redirect_if_not_logged_in(self):
+        resp = self.client.get(reverse('post_new'))
+        self.assertRedirects(resp, '/accounts/login/?next=/posts/new/')
+
+    def test_logged_in_uses_correct_template(self):
+        test_user = User.objects.create_user(username='testuser', password='1234qwer')
+        login = self.client.login(username='testuser', password='1234qwer')
+        resp = self.client.get(reverse('post_new'))
+        self.assertEqual(str(resp.context['user']), 'testuser')
+        self.assertEqual(resp.status_code, 200)
+
+    def test_new_model_button_exist(self):
+            response = self.client.get('/posts/model/')
+            self.assertContains(response, 'New Post')
+
